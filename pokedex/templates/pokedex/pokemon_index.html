@@ -1,0 +1,16 @@
+{% if pokemon_spec_list %}
+    <table>
+        <tr>
+            <th>도감번호</th>
+            <th>이름</th>
+        </tr>
+        {% for pokemon_spec in pokemon_spec_list %}
+            <tr>
+                <td>{{ pokemon_spec.index_number }}</td>
+                <td><a href="{% url 'pokedex:pokemon_detail' pokemon_spec.pk %}">{{ pokemon_spec.name.korean }}</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>There is no pokemon.</p>
+{% endif %}

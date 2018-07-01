@@ -1,0 +1,16 @@
+{% if move_list %}
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+        </tr>
+        {% for move in move_list %}
+        <tr>
+            <td>{{ move.id }}</td>
+            <td><a href="{% url 'pokedex:move_detail' move.id %}">{{ move.name.korean }}</a> </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>There is no move.</p>
+{% endif %}

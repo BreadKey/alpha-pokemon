@@ -1,9 +1,0 @@
-{% if pokemon_spec_list %}
-    <ul>
-    {% for pokemon_spec in pokemon_spec_list %}
-        <li><a href="{% url 'pokedex:detail' pokemon_spec.pk %}">{{ pokemon_spec.name.korean }}</a> </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>There is no pokemon.</p>
-{% endif %}

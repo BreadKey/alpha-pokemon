@@ -1,0 +1,16 @@
+{% if ability_list %}
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+        </tr>
+        {% for ability in ability_list %}
+            <tr>
+                <td>{{ ability.id }}</td>
+                <td><a href="{% url 'pokedex:ability_detail' ability.id %}">{{ ability.name.korean }}</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>There is no ability.</p>
+{% endif %}

@@ -1,0 +1,24 @@
+<h1>{{ pokemonmove.name.korean }}</h1>
+<dev>
+    <h2>상세</h2>
+    <table>
+        <tr>
+            <th>위력</th>
+            <th>명중률</th>
+            <th>설명</th>
+        </tr>
+        <tr>
+            <td>{{ pokemonmove.damage_to_str }}</td>
+            <td>{{ pokemonmove.accuracy_to_str }}</td>
+            <td>{{ pokemonmove.description.korean }}</td>
+        </tr>
+    </table>
+</dev>
+<dev>
+    <h2>배울 수 있는 포켓몬</h2>
+    <ul>
+        {% for pokemon in pokemonmove.pokemons_can_learn %}
+            <li><a href="{% url 'pokedex:pokemon_detail' pokemon.pk %}">{{ pokemon.name.korean }}</a></li>
+        {% endfor %}
+    </ul>
+</dev>

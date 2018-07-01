@@ -1,0 +1,32 @@
+<h1>{{ pokemonspec.name.korean }}</h1>
+<dev>
+    <h2>종족값</h2>
+    <table>
+        <tr>
+            <th>HP</th>
+            <th>공격</th>
+            <th>방어</th>
+            <th>특수공격</th>
+            <th>특수방어</th>
+            <th>스피드</th>
+            <th>총합</th>
+        </tr>
+        <tr>
+            <td>{{ pokemonspec.base_hp }}</td>
+            <td>{{ pokemonspec.base_attack }}</td>
+            <td>{{ pokemonspec.base_defense }}</td>
+            <td>{{ pokemonspec.base_special_attack }}</td>
+            <td>{{ pokemonspec.base_special_defense }}</td>
+            <td>{{ pokemonspec.base_speed }}</td>
+            <td>{{ pokemonspec.sum_of_base_stats }}</td>
+        </tr>
+    </table>
+</dev>
+<dev>
+    <h2>배울 수 있는 기술</h2>
+    <ul>
+        {% for move in pokemonspec.can_learn_moves_order_by_ascending_id %}
+            <li><a href="{% url 'pokedex:move_detail' move.id %}">{{ move.name.korean }}</a> </li>
+        {% endfor %}
+    </ul>
+</dev>
