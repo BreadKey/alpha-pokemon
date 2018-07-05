@@ -1,0 +1,11 @@
+<h1>포켓몬 샘플 제작기</h1>
+<div>
+    <h2>포켓몬 목록</h2>
+    {% if pokemon_list %}
+        {% for pokemon in pokemon_list %}
+            <a href="{% url 'sample_maker:sample_maker' pokemon.pk %}">{{ pokemon.name.korean }}</a>
+        {% endfor %}
+    {% else %}
+        <p>There is no Pokemon</p>
+    {% endif %}
+</div>

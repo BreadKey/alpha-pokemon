@@ -1,5 +1,5 @@
 <h1>{{ pokemonspec.name.korean }}</h1>
-<dev>
+<div>
     <h2>종족값</h2>
     <table>
         <tr>
@@ -21,12 +21,12 @@
             <td>{{ pokemonspec.sum_of_base_stats }}</td>
         </tr>
     </table>
-</dev>
-<dev>
+</div>
+<div>
     <h2>배울 수 있는 기술</h2>
     <ul>
         {% for move in pokemonspec.can_learn_moves_order_by_ascending_id %}
             <li><a href="{% url 'pokedex:move_detail' move.id %}">{{ move.name.korean }}</a> </li>
         {% endfor %}
     </ul>
-</dev>
+</div>

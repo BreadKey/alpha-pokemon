@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sample_maker.apps.SampleMakerConfig',
     'pokedex.apps.PokedexConfig',
     'django.contrib.admin',
     'django.contrib.auth',

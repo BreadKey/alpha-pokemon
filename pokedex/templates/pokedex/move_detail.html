@@ -1,5 +1,5 @@
 <h1>{{ pokemonmove.name.korean }}</h1>
-<dev>
+<div>
     <h2>상세</h2>
     <table>
         <tr>
@@ -13,12 +13,12 @@
             <td>{{ pokemonmove.description.korean }}</td>
         </tr>
     </table>
-</dev>
-<dev>
+</div>
+<div>
     <h2>배울 수 있는 포켓몬</h2>
     <ul>
         {% for pokemon in pokemonmove.pokemons_can_learn %}
             <li><a href="{% url 'pokedex:pokemon_detail' pokemon.pk %}">{{ pokemon.name.korean }}</a></li>
         {% endfor %}
     </ul>
-</dev>
+</div>

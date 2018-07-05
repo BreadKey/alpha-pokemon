@@ -11,7 +11,7 @@ class PokemonIndexView(generic.ListView):
     context_object_name = 'pokemon_spec_list'
 
     def get_queryset(self):
-        return PokemonSpec.objects.order_by('-index_number')
+        return PokemonSpec.objects.order_by('index_number')
 
 class PokemonDetailView(generic.DetailView):
     model = PokemonSpec

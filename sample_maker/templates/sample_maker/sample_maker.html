@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<h1>{{ pokemonspec.name.korean }}</h1>
+
+<div id="base_stats" >
+    <h2>종족값</h2>
+    <table>
+        <tr>
+            <th>HP</th>
+            <th>공격</th>
+            <th>방어</th>
+            <th>특수공격</th>
+            <th>특수방어</th>
+            <th>스피드</th>
+            <th>총합</th>
+        </tr>
+        <tr>
+            <td id="base_hp">{{ pokemonspec.base_hp }}</td>
+            <td id="base_attack">{{ pokemonspec.base_attack }}</td>
+            <td id="base_defense">{{ pokemonspec.base_defense }}</td>
+            <td id="base_special_attack">{{ pokemonspec.base_special_attack }}</td>
+            <td id="base_special_defense">{{ pokemonspec.base_special_defense }}</td>
+            <td id="base_speed">{{ pokemonspec.base_speed }}</td>
+            <td id="sum_of_base_stats">{{ pokemonspec.sum_of_base_stats }}</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h2>성격</h2>
+        <select>
+            <option>외로움</option>
+            <option>고집</option>
+        </select>
+</div>
+
+<div id="IVs" >
+    <h2>개체값</h2>
+    <table>
+        <tr>
+            <th>HP</th>
+            <th>공격</th>
+            <th>방어</th>
+            <th>특수공격</th>
+            <th>특수방어</th>
+            <th>스피드</th>
+            <th>잠재파워</th>
+        </tr>
+        <tr>
+            {% with 'hp attack defense special_attack special_defense speed' as list %}
+                {% for stat in list.split %}
+                    <td><input type="number" value="31" min="0" max="31" id="{{ stat }}_IV" oninput="IV_changed('{{ stat }}')"></td>
+                {% endfor %}
+            {% endwith %}
+            <td><a id="hidden_power">악</a></td>
+        </tr>
+    </table>
+</div>
+
+<div id="EVs" >
+    <h2>노력치</h2>
+    <table>
+        <tr>
+            <th>HP</th>
+            <th>공격</th>
+            <th>방어</th>
+            <th>특수공격</th>
+            <th>특수방어</th>
+            <th>스피드</th>
+            <th>남은 노력치</th>
+        </tr>
+        <tr>
+            {% with 'hp attack defense special_attack special_defense speed' as list %}
+                {% for stat in list.split %}
+                    <td><input type="number" value="0" min="0" max="252" id="{{ stat }}_EV" oninput="EV_changed('{{ stat }}')"></td>
+                {% endfor %}
+            {% endwith %}
+            <td><input type="number" value="510" min="0" max="510" readonly id="remain_EV"></td>
+        </tr>
+    </table>
+</div>
+
+<div id="actual_stats">
+    <h2>실제 능력치</h2>
+    <table>
+        <tr>
+            <th>HP</th>
+            <th>공격</th>
+            <th>방어</th>
+            <th>특수공격</th>
+            <th>특수방어</th>
+            <th>스피드</th>
+        </tr>
+        <tr>
+            {% with 'hp attack defense special_attack special_defense speed' as list %}
+                {% for stat in list.split %}
+                    <td id="actual_{{ stat }}"></td>
+                {% endfor %}
+            {% endwith %}
+        </tr>
+    </table>
+</div>
+
+<script>
+    const stats = ['hp', 'attack', 'defense', 'special_attack', 'special_defense', 'speed'];
+
+    function IV_changed(stat) {
+        var id = stat + "_IV";
+        check_value(id);
+
+        judge_hidden_power()
+    }
+
+    function judge_hidden_power() {
+        var hp = parseInt(document.getElementById("hp_IV").value);
+        hp %= 2;
+        var attack = parseInt(document.getElementById("attack_IV").value);
+        attack %= 2;
+        var defense = parseInt(document.getElementById("defense_IV").value);
+        defense %= 2;
+        var special_attack = parseInt(document.getElementById("special_attack_IV").value);
+        special_attack %= 2;
+        var special_defense = parseInt(document.getElementById("special_defense_IV").value);
+        special_defense %= 2;
+        var speed = parseInt(document.getElementById("speed_IV").value);
+        speed %= 2;
+
+        var type = hp + (2 * attack) + (4 * defense) + (8 * speed) + (16 * special_attack) + (32 * special_defense);
+        type *= 15;
+        type /= 63;
+        type = parseInt(type);
+
+        var hidden_power = document.getElementById("hidden_power");
+        if (type == 0) {
+            hidden_power.innerHTML = "격투";
+        }
+        else if (type == 1) {
+            hidden_power.innerHTML = "비행";
+        }
+        else if (type == 2) {
+            hidden_power.innerHTML = "독";
+        }
+        else if (type == 3) {
+            hidden_power.innerHTML = "땅";
+        }
+        else if (type == 4) {
+            hidden_power.innerHTML = "바위";
+        }
+        else if (type == 5) {
+            hidden_power.innerHTML = "벌레";
+        }
+        else if (type == 6) {
+            hidden_power.innerHTML = "고스트";
+        }
+        else if (type == 7) {
+            hidden_power.innerHTML = "강철";
+        }
+        else if (type == 8) {
+            hidden_power.innerHTML = "불꽃";
+        }
+        else if (type == 9) {
+            hidden_power.innerHTML = "물";
+        }
+        else if (type == 10) {
+            hidden_power.innerHTML = "풀";
+        }
+        else if (type == 11) {
+            hidden_power.innerHTML = "전기";
+        }
+        else if (type == 12) {
+            hidden_power.innerHTML = "에스퍼";
+        }
+        else if (type == 13) {
+            hidden_power.innerHTML = "얼음";
+        }
+        else if (type == 14) {
+            hidden_power.innerHTML = "드래곤";
+        }
+        else if (type == 15) {
+            hidden_power.innerHTML = "악";
+        }
+    }
+
+    function EV_changed(stat) {
+        var id = stat + "_EV";
+        check_value(id);
+
+        var remain_EV = document.getElementById("remain_EV");
+        var EV_sum = sum_of_EVs();
+        remain_EV.value = parseInt(remain_EV.max) - EV_sum;
+
+        if (remain_EV.value < parseInt(remain_EV.min)) {
+            var EV = document.getElementById(id);
+            var stat_value = parseInt(remain_EV.value) + parseInt(EV.value);
+            EV.value = stat_value;
+            remain_EV.value = 0;
+        }
+
+        calculate_actual_stats()
+    }
+
+    function check_value(id) {
+        var x = document.getElementById(id);
+
+            if (x.value > parseInt(x.max)) {
+                x.value = x.max;
+            }
+            else if (x.value < parseInt(x.min)) {
+                x.value = x.min;
+            }
+    }
+
+    function sum_of_EVs() {
+        var sum = 0;
+        for (i = 0; i < stats.length; i++) {
+            var id = stats[i] + "_EV";
+            value = document.getElementById(id).value;
+            value = parseInt(value)
+            sum += value;
+        }
+        return sum;
+    }
+
+    function calculate_actual_stats() {
+        level = 50
+
+        for (i = 0; i < stats.length; i++) {
+            var base_stat_id = "base_" + stats[i];
+            var base_stat = parseInt(document.getElementById(base_stat_id).innerHTML);
+            var EV_id = stats[i] + "_EV";
+            var EV = parseInt(document.getElementById(EV_id).value);
+            var IV_id = stats[i] + "_IV";
+            var IV = parseInt(document.getElementById(IV_id).value);
+
+            var actual_stat = (base_stat * 2 + IV + EV/4);
+            actual_stat *= level / 100;
+
+            if (stats[i] == 'hp') {
+                actual_stat += 10 + level;
+            }
+            else {
+                actual_stat += 5;
+                var nature_gain = get_nature_gain(stats[i]);
+                actual_stat *= nature_gain
+            }
+
+            actual_stat = parseInt(actual_stat);
+
+            actual_stat_id = "actual_" + stats[i];
+            document.getElementById(actual_stat_id).innerHTML = actual_stat;
+        }
+    }
+
+    function get_nature_gain(stat) {
+        return 1
+    }
+</script>
+</html>
