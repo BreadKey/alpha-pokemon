@@ -9,8 +9,31 @@ class SelectPokemonView(generic.ListView):
     context_object_name = 'pokemon_list'
 
     def get_queryset(self):
-        return PokemonSpec.objects.order_by('-index_number')
+        return PokemonSpec.objects.order_by('index_number')
 
-class SampleMakerView(generic.DetailView):
-    model = PokemonSpec
+class SampleMakerView(generic.TemplateView):
     template_name = 'sample_maker/sample_maker.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SampleMakerView, self).get_context_data(**kwargs)
+        context['pokemonspec'] = PokemonSpec.objects.get(pk=kwargs['pk'])
+        context['natures'] = PokemonNature.objects.order_by('id')
+        context['stats'] = [
+            Name.objects.get(korean='HP'),
+            Name.objects.get(korean='공격'),
+            Name.objects.get(korean='방어'),
+            Name.objects.get(korean='특수공격'),
+            Name.objects.get(korean='특수방어'),
+            Name.objects.get(korean='스피드')
+        ]
+        context['formal_stats'] = [
+            'hp',
+            'attack',
+            'defense',
+            'special_attack',
+            'special_defense',
+            'speed'
+        ]
+        context['number_of_moves'] = range(4)
+
+        return context

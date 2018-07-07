@@ -3,7 +3,8 @@
     <h2>포켓몬 목록</h2>
     {% if pokemon_list %}
         {% for pokemon in pokemon_list %}
-            <a href="{% url 'sample_maker:sample_maker' pokemon.pk %}">{{ pokemon.name.korean }}</a>
+            <input type="button" value="{{ pokemon.name.korean }}"
+                   onclick="location.href='{% url 'sample_maker:sample_maker' pokemon.pk %}'">
         {% endfor %}
     {% else %}
         <p>There is no Pokemon</p>

@@ -3,8 +3,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
 class Name(models.Model):
-    korean = models.CharField(max_length=12, default='이름 없음')
-    english = models.CharField(max_length=12, default='No name')
+    korean = models.CharField(max_length=20, default='이름 없음')
+    english = models.CharField(max_length=20, default='No name')
 
     def __str__(self):
         return self.korean

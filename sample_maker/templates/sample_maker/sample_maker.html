@@ -3,16 +3,24 @@
 
 <h1>{{ pokemonspec.name.korean }}</h1>
 
+<div id="types">
+    <h2>타입</h2>
+    <table>
+        <tr id="types_tr">
+            {% for type in pokemonspec.types.all %}
+                <td id="type_{{ forloop.counter0 }}" data-pk="{{ type.pk }}">{{ type.name.korean }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+
 <div id="base_stats" >
     <h2>종족값</h2>
     <table>
         <tr>
-            <th>HP</th>
-            <th>공격</th>
-            <th>방어</th>
-            <th>특수공격</th>
-            <th>특수방어</th>
-            <th>스피드</th>
+            {% for stat in stats %}
+                <th>{{ stat.korean }}</th>
+            {% endfor %}
             <th>총합</th>
         </tr>
         <tr>
@@ -28,31 +36,60 @@
 </div>
 
 <div>
+    <h2>특성</h2>
+    <select id="select_ability" onchange="ability_changed()">
+        {% for ability in pokemonspec.can_have_abilities.all %}
+            <option
+                data-description="{{ ability.description.korean }}">
+                {{ ability.name.korean }}
+            </option>
+        {% endfor %}
+        {% for hidden_ability in pokemonspec.hidden_ability.all %}
+            <option
+                data-description="{{ hidden_ability.description.korean }}">
+                {{ hidden_ability.name.korean }}(숨겨진 특성)
+            </option>
+        {% endfor %}
+    </select>
+    <a id="ability_description">{{ pokemonspec.can_have_abilities.all.0.description.korean }}</a>
+</div>
+
+<div>
     <h2>성격</h2>
-        <select>
-            <option>외로움</option>
-            <option>고집</option>
-        </select>
+    <select id="select_nature" onchange="nature_changed()">
+        {% for nature in natures %}
+            <option
+                data-increased_stat="{{ nature.increased_stat.korean }}"
+                data-decreased_stat="{{ nature.decreased_stat.korean }}">
+                {{ nature.name.korean }}
+            </option>
+        {% endfor %}
+    </select>
+    <table>
+        <tr>
+            <th>상승 능력치</th>
+            <th>하강 능력치</th>
+        </tr>
+        <tr>
+            <td id="increased_stat">{{ natures.0.increased_stat.korean }}</td>
+            <td id="decreased_stat">{{ natures.0.decreased_stat.korean }}</td>
+        </tr>
+    </table>
 </div>
 
 <div id="IVs" >
     <h2>개체값</h2>
     <table>
         <tr>
-            <th>HP</th>
-            <th>공격</th>
-            <th>방어</th>
-            <th>특수공격</th>
-            <th>특수방어</th>
-            <th>스피드</th>
+            {% for stat in stats %}
+                <th>{{ stat.korean }}</th>
+            {% endfor %}
             <th>잠재파워</th>
         </tr>
         <tr>
-            {% with 'hp attack defense special_attack special_defense speed' as list %}
-                {% for stat in list.split %}
-                    <td><input type="number" value="31" min="0" max="31" id="{{ stat }}_IV" oninput="IV_changed('{{ stat }}')"></td>
-                {% endfor %}
-            {% endwith %}
+            {% for stat in formal_stats %}
+                <td><input type="number" value="31" min="0" max="31" id="{{ stat }}_IV" oninput="IV_changed('{{ stat }}')"></td>
+            {% endfor %}
             <td><a id="hidden_power">악</a></td>
         </tr>
     </table>
@@ -62,20 +99,15 @@
     <h2>노력치</h2>
     <table>
         <tr>
-            <th>HP</th>
-            <th>공격</th>
-            <th>방어</th>
-            <th>특수공격</th>
-            <th>특수방어</th>
-            <th>스피드</th>
+            {% for stat in stats %}
+                <th>{{ stat.korean }}</th>
+            {% endfor %}
             <th>남은 노력치</th>
         </tr>
         <tr>
-            {% with 'hp attack defense special_attack special_defense speed' as list %}
-                {% for stat in list.split %}
-                    <td><input type="number" value="0" min="0" max="252" id="{{ stat }}_EV" oninput="EV_changed('{{ stat }}')"></td>
-                {% endfor %}
-            {% endwith %}
+            {% for stat in formal_stats %}
+                <td><input type="number" value="0" min="0" max="252" id="{{ stat }}_EV" oninput="EV_changed('{{ stat }}')"></td>
+            {% endfor %}
             <td><input type="number" value="510" min="0" max="510" readonly id="remain_EV"></td>
         </tr>
     </table>
@@ -85,101 +117,243 @@
     <h2>실제 능력치</h2>
     <table>
         <tr>
-            <th>HP</th>
-            <th>공격</th>
-            <th>방어</th>
-            <th>특수공격</th>
-            <th>특수방어</th>
-            <th>스피드</th>
+            {% for stat in stats %}
+                <th>{{ stat.korean }}</th>
+            {% endfor %}
         </tr>
         <tr>
-            {% with 'hp attack defense special_attack special_defense speed' as list %}
-                {% for stat in list.split %}
-                    <td id="actual_{{ stat }}"></td>
-                {% endfor %}
-            {% endwith %}
+            {% for stat in formal_stats %}
+                <td id="actual_{{ stat }}"></td>
+            {% endfor %}
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>물리 내구력</th>
+            <th>특수 내구력</th>
+        </tr>
+        <tr>
+            <td id="physical_durability"></td>
+            <td id="special_durability"></td>
         </tr>
     </table>
 </div>
 
+<div>
+    <h2>기술</h2>
+    {% for i in number_of_moves %}
+        <div>
+            <select id="select_learned_move_{{ i }}" onchange="learned_move_changed({{ i }})">
+                <option selected>--</option>
+                {% for move in pokemonspec.can_learn_moves_order_by_ascending_id %}
+                    <option
+                        data-pk="{{ move.pk }}"
+                        data-damage="{{ move.damage_to_str }}"
+                        data-accuracy="{{ move.accuracy_to_str }}"
+                        data-description="{{ move.description.korean }}"
+                        data-category="{{ move.category.name.korean }}"
+                        data-type_pk="{{ move.type.pk }}">
+                        {{ move.name.korean }}
+                    </option>
+                {% endfor %}
+            </select>
+            <table id="learned_move_{{ i }}_table">
+                <tr>
+                    <th>위력</th>
+                    <th>명중률</th>
+                    <th>분류</th>
+                </tr>
+                <tr>
+                    <td id="move_{{ i }}_damage"></td>
+                    <td id="move_{{ i }}_accuracy"></td>
+                    <td id="move_{{ i }}_category"></td>
+                </tr>
+                <tr>
+                    <th>설명</th>
+                </tr>
+                <tr>
+                    <td id="move_{{ i }}_description"></td>
+                </tr>
+                <tr>
+                    <th>결정력</th>
+                </tr>
+                <tr>
+                    <td id="move_{{ i }}_decisive_power"></td>
+                </tr>
+            </table>
+        </div>
+    {% endfor %}
+</div>
+
 <script>
     const stats = ['hp', 'attack', 'defense', 'special_attack', 'special_defense', 'speed'];
+    const number_of_moves = 4;
+    input_changed();
+
+    function get_base_stats() {
+        var base_stats = {}
+        for (i = 0; i < stats.length; i++) {
+            var id = "base_" + stats[i];
+            var base_stat = parseInt(document.getElementById(id).innerHTML);
+            base_stats[stats[i]] = base_stat;
+        }
+
+        return base_stats;
+    }
+
+    function get_EVs() {
+        var EVs = {}
+        for (i = 0; i < stats.length; i++) {
+            var id = stats[i] + "_EV";
+            var EV = parseInt(document.getElementById(id).value);
+            EVs[stats[i]] = EV;
+        }
+
+        return EVs;
+    }
+
+    function get_IVs() {
+        var IVs = {}
+        for (i = 0; i < stats.length; i++) {
+            var id = stats[i] + "_IV";
+            var IV = parseInt(document.getElementById(id).value);
+            IVs[stats[i]] = IV;
+        }
+
+        return IVs;
+    }
+
+    function get_actual_stats() {
+        var actual_stats = {}
+        for (i = 0; i < stats.length; i++) {
+            var id = "actual_" + stats[i];
+            var actual_stat = parseInt(document.getElementById(id).innerHTML);
+            actual_stats[stats[i]] = actual_stat;
+        }
+
+        return actual_stats;
+    }
+
+    function set_actual_stats(actual_stats) {
+        for (i = 0; i < stats.length; i++) {
+            var actual_stat_id = "actual_" + stats[i];
+            document.getElementById(actual_stat_id).innerHTML = actual_stats[stats[i]];
+        }
+    }
+
+    function set_durability(durability) {
+        document.getElementById("physical_durability").innerHTML = durability['physical'];
+        document.getElementById("special_durability").innerHTML = durability['special'];
+    }
+
+    function ability_changed() {
+        var ability = document.getElementById("select_ability");
+        ability = ability.options[ability.selectedIndex];
+        var description = ability.getAttribute('data-description');
+
+        var ad = document.getElementById("ability_description");
+        ad.innerHTML = description;
+    }
+
+    function nature_changed() {
+        var nature = document.getElementById("select_nature");
+        nature = nature.options[nature.selectedIndex];
+        var increased_stat = nature.getAttribute('data-increased_stat');
+        var decreased_stat = nature.getAttribute('data-decreased_stat');
+
+        var ic = document.getElementById("increased_stat");
+        ic.innerHTML = increased_stat;
+        var dc = document.getElementById("decreased_stat");
+        dc.innerHTML = decreased_stat;
+
+        input_changed();
+    }
 
     function IV_changed(stat) {
         var id = stat + "_IV";
         check_value(id);
 
         judge_hidden_power()
+        input_changed()
     }
 
     function judge_hidden_power() {
-        var hp = parseInt(document.getElementById("hp_IV").value);
-        hp %= 2;
-        var attack = parseInt(document.getElementById("attack_IV").value);
-        attack %= 2;
-        var defense = parseInt(document.getElementById("defense_IV").value);
-        defense %= 2;
-        var special_attack = parseInt(document.getElementById("special_attack_IV").value);
-        special_attack %= 2;
-        var special_defense = parseInt(document.getElementById("special_defense_IV").value);
-        special_defense %= 2;
-        var speed = parseInt(document.getElementById("speed_IV").value);
-        speed %= 2;
+        var IVs = get_IVs();
 
-        var type = hp + (2 * attack) + (4 * defense) + (8 * speed) + (16 * special_attack) + (32 * special_defense);
-        type *= 15;
-        type /= 63;
-        type = parseInt(type);
+        var type_value = calculate_hidden_power_type_value(IVs);
+        var type = decide_hidden_power_type(type_value);
 
         var hidden_power = document.getElementById("hidden_power");
-        if (type == 0) {
-            hidden_power.innerHTML = "격투";
+        hidden_power.innerHTML = type
+    }
+
+    function calculate_hidden_power_type_value(IVs) {
+        var type_value = (IVs['hp'] % 2) +
+        (2 * (IVs['attack'] % 2)) + (4 * (IVs['defense'] % 2)) +
+        (8 * (IVs['speed'] % 2)) +
+        (16 * (IVs['special_attack'] % 2)) + (32 * (IVs['special_defense'] % 2));
+
+        type_value *= 15;
+        type_value /= 63;
+        type_value = parseInt(type_value);
+
+        return type_value;
+    }
+
+    function decide_hidden_power_type(type_value) {
+        var type = '없음';
+        switch (type_value) {
+            case 0:
+                type = '격투';
+                break;
+            case 1:
+                type = '비행';
+                break;
+            case 2:
+                type = '독';
+                break;
+            case 3:
+                type = '땅';
+                break;
+            case 4:
+                var type = '바위';
+                break;
+            case 5:
+                type = '벌레';
+                break;
+            case 6:
+                type = '고스트';
+                break;
+            case 7:
+                type = '강철';
+                break;
+            case 8:
+                type = '불꽃';
+                break;
+            case 9:
+                type = '물';
+                break;
+            case 10:
+                type = '풀';
+                break;
+            case 11:
+                type = '전기';
+                break;
+            case 12:
+                type = '에스퍼';
+                break;
+            case 13:
+                type = '얼음';
+                break;
+            case 14:
+                type = '드래곤';
+                break;
+            case 15:
+                type = '악';
+                break;
         }
-        else if (type == 1) {
-            hidden_power.innerHTML = "비행";
-        }
-        else if (type == 2) {
-            hidden_power.innerHTML = "독";
-        }
-        else if (type == 3) {
-            hidden_power.innerHTML = "땅";
-        }
-        else if (type == 4) {
-            hidden_power.innerHTML = "바위";
-        }
-        else if (type == 5) {
-            hidden_power.innerHTML = "벌레";
-        }
-        else if (type == 6) {
-            hidden_power.innerHTML = "고스트";
-        }
-        else if (type == 7) {
-            hidden_power.innerHTML = "강철";
-        }
-        else if (type == 8) {
-            hidden_power.innerHTML = "불꽃";
-        }
-        else if (type == 9) {
-            hidden_power.innerHTML = "물";
-        }
-        else if (type == 10) {
-            hidden_power.innerHTML = "풀";
-        }
-        else if (type == 11) {
-            hidden_power.innerHTML = "전기";
-        }
-        else if (type == 12) {
-            hidden_power.innerHTML = "에스퍼";
-        }
-        else if (type == 13) {
-            hidden_power.innerHTML = "얼음";
-        }
-        else if (type == 14) {
-            hidden_power.innerHTML = "드래곤";
-        }
-        else if (type == 15) {
-            hidden_power.innerHTML = "악";
-        }
+
+        return type;
     }
 
     function EV_changed(stat) {
@@ -197,16 +371,93 @@
             remain_EV.value = 0;
         }
 
-        calculate_actual_stats()
+        input_changed()
+    }
+
+    function learned_move_changed(index) {
+        var id = "select_learned_move_" + index;
+        var move_select = document.getElementById(id);
+        var move = move_select.options[move_select.selectedIndex];
+
+        var move_table_id = "learned_move_" + index + "_table";
+        var move_table = document.getElementById(move_table_id);
+
+        if (move.value == '--') {
+            set_learned_move_to_none(index, move_select, move_table);
+            return;
+        }
+
+        var pk = move.getAttribute('data-pk');
+
+
+        if (is_duplicated_move(index, pk)) {
+                set_learned_move_to_none(index, move_select, move_table);
+                alert("이미 배운 기술입니다.");
+                return;
+        }
+
+        document.getElementById(move_table_id).style.display = "initial";
+
+        var damage = move.getAttribute('data-damage');
+        var accuracy = move.getAttribute('data-accuracy');
+        var description = move.getAttribute('data-description');
+        var category = move.getAttribute('data-category');
+
+        set_learned_move_spec(index, 'damage', damage);
+        set_learned_move_spec(index, 'accuracy', accuracy);
+        set_learned_move_spec(index, 'description', description);
+        set_learned_move_spec(index, 'category', category);
+
+        var type_pk = move.getAttribute('data-type_pk');
+
+        var actual_stats = get_actual_stats();
+        var decisive_power = calculate_move_decisive_power(actual_stats, damage, category, type_pk);
+
+        var decisive_power_id = "move_" + index + "_decisive_power";
+        document.getElementById(decisive_power_id).innerHTML = decisive_power;
+
+        calculate_stab(type_pk);
+    }
+
+    function set_learned_move_spec(index, spec, value) {
+        var id = "move_" + index + "_" + spec;
+        document.getElementById(id).innerHTML = value;
+    }
+
+    function set_learned_move_to_none(index, move_select, move_table) {
+        move_select.options[0].selected = "selected";
+        move_table.style.display = "none";
+        set_learned_move_spec(index, 'damage', '');
+        set_learned_move_spec(index, 'accuracy', '');
+        set_learned_move_spec(index, 'description', '');
+        set_learned_move_spec(index, 'category', '');
+    }
+
+    function is_duplicated_move(index, move_pk) {
+        for (i = 0; i < number_of_moves; i++) {
+            if (i != index) {
+                var another_move_select_id = "select_learned_move_" + i;
+                var another_move_select = document.getElementById(another_move_select_id);
+                var another_move = another_move_select.options[another_move_select.selectedIndex];
+                var another_move_pk = another_move.getAttribute('data-pk');
+
+                if (another_move_pk == move_pk) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     function check_value(id) {
         var x = document.getElementById(id);
-
             if (x.value > parseInt(x.max)) {
                 x.value = x.max;
             }
             else if (x.value < parseInt(x.min)) {
+                x.value = x.min;
+            }
+            else if (x.value == '') {
                 x.value = x.min;
             }
     }
@@ -222,18 +473,12 @@
         return sum;
     }
 
-    function calculate_actual_stats() {
-        level = 50
+    function calculate_actual_stats(base_stats, EVs, IVs) {
+        var level = 50;
+        var actual_stats = {};
 
         for (i = 0; i < stats.length; i++) {
-            var base_stat_id = "base_" + stats[i];
-            var base_stat = parseInt(document.getElementById(base_stat_id).innerHTML);
-            var EV_id = stats[i] + "_EV";
-            var EV = parseInt(document.getElementById(EV_id).value);
-            var IV_id = stats[i] + "_IV";
-            var IV = parseInt(document.getElementById(IV_id).value);
-
-            var actual_stat = (base_stat * 2 + IV + EV/4);
+            var actual_stat = (base_stats[stats[i]] * 2 + IVs[stats[i]] + EVs[stats[i]]/4);
             actual_stat *= level / 100;
 
             if (stats[i] == 'hp') {
@@ -241,19 +486,129 @@
             }
             else {
                 actual_stat += 5;
-                var nature_gain = get_nature_gain(stats[i]);
+                var nature_gain = calculate_nature_gain(stats[i]);
                 actual_stat *= nature_gain
             }
 
             actual_stat = parseInt(actual_stat);
+            actual_stats[stats[i]] = actual_stat;
+        }
 
-            actual_stat_id = "actual_" + stats[i];
-            document.getElementById(actual_stat_id).innerHTML = actual_stat;
+        return actual_stats;
+    }
+
+    function calculate_durability(actual_stats) {
+        var durability = {};
+        durability['physical'] = parseInt((actual_stats['hp'] * actual_stats['defense']) / 0.411);
+        durability['special'] = parseInt((actual_stats['hp'] * actual_stats['special_defense']) / 0.411);
+
+        return durability;
+    }
+
+    function calculate_move_decisive_power(actual_stats, move_damage, move_category, move_type_pk) {
+        var stab = calculate_stab(move_type_pk);
+        var category = move_category_translator(move_category);
+        var decisive_power = 0;
+
+        if (damage = parseInt(move_damage)) {
+            if (category == 'physical') {
+                decisive_power = damage * actual_stats['attack'];
+            }
+            else if (category == 'special') {
+                decisive_power = damage * actual_stats['special_attack'];
+            }
+            decisive_power *= stab
+        }
+
+        return decisive_power;
+    }
+
+    function calculate_nature_gain(stat) {
+        var increased_stat = document.getElementById("increased_stat").innerHTML;
+        increased_stat = stat_translator(increased_stat);
+        var decreased_stat = document.getElementById("decreased_stat").innerHTML;
+        decreased_stat = stat_translator(decreased_stat);
+
+        if (increased_stat == stat) {
+            return 1.1
+        }
+        else if (decreased_stat == stat) {
+            return 0.9
+        }
+        else {
+            return 1;
         }
     }
 
-    function get_nature_gain(stat) {
-        return 1
+    function calculate_stab(move_type_pk) {
+        var stab = 1;
+        var types = document.getElementById("types_tr").cells;
+        for (i = 0; i < types.length; i++) {
+            var type_pk = types[i].getAttribute('data-pk');
+
+            if (type_pk == move_type_pk) {
+                stab = 1.5;
+            }
+        }
+        return stab;
     }
+
+    function input_changed() {
+        var base_stats = get_base_stats();
+        var EVs = get_EVs();
+        var IVs = get_IVs();
+
+        var actual_stats = calculate_actual_stats(base_stats, EVs, IVs);
+        set_actual_stats(actual_stats);
+
+        var durability = calculate_durability(actual_stats);
+        set_durability(durability);
+
+        for (i = 0; i < number_of_moves; i ++) {
+            learned_move_changed(i);
+        }
+    }
+
+    function stat_translator(stat) {
+        var stat = stat.toLowerCase();
+        stat = stat.replace(' ', '');
+        if (stat == '공격' || stat == 'attack') {
+            return 'attack';
+        }
+        else if (stat == '방어' || stat == 'defense') {
+            return 'defense';
+        }
+        else if (stat == '특수공격' || stat == 'specialattack') {
+            return 'special_attack';
+        }
+        else if (stat == '특수방어' || stat == 'specialdefense') {
+            return 'special_defense';
+        }
+        else if (stat == '스피드' || stat == 'speed') {
+            return 'speed';
+        }
+        else {
+            return 'none';
+        }
+    }
+
+    function move_category_translator(move_category) {
+        var category = move_category.toLowerCase();
+        category = category.replace(' ', '');
+        if (category == '물리' || category == 'physical') {
+            return 'physical';
+        }
+        else if (category == '특수' || category == 'special') {
+            return 'special';
+        }
+
+        else if (category == '변화' || category == 'status') {
+            return 'status';
+        }
+        else {
+            return 'none';
+        }
+    }
+
 </script>
 </html>
