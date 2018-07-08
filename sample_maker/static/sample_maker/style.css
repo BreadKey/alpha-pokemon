@@ -194,8 +194,7 @@ input.sum-of-EVs-reach-max {
 }
 
 .chart-container .chart {
-    margin-left: 100px;
-    margin-top: 25px;
-    width: 350px;
-    height: 350px;
+    margin-left: 25px;
+    width: 500px;
+    height: 380px;
 }
