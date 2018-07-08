@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bdf1c69c-b455-410d-9c29-4212412d25c2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pokedex/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pokedex/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample_maker/templates/sample_maker/sample_maker.html" beforeDir="false" afterPath="$PROJECT_DIR$/sample_maker/templates/sample_maker/sample_maker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_maker/templates/sample_maker/select_pokemon.html" beforeDir="false" afterPath="$PROJECT_DIR$/sample_maker/templates/sample_maker/select_pokemon.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample_maker/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_maker/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,29 +15,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pokemon_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="sample_maker.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sample_maker/templates/sample_maker/sample_maker.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-361">
-              <caret line="139" column="6" lean-forward="true" selection-start-line="139" selection-start-column="6" selection-end-line="139" selection-end-column="6" />
+            <state relative-caret-position="-1121">
+              <caret line="256" column="15" lean-forward="true" selection-start-line="256" selection-start-column="15" selection-end-line="256" selection-end-column="15" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#option#1;n#select#0;n#td#1;n#tr#0;n#table#0;n#div#2;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="select_pokemon.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample_maker/templates/sample_maker/select_pokemon.html">
+      <file leaf-file-name="ability_index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/ability_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+            <state relative-caret-position="95">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-171" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sample_maker/static/sample_maker/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2549">
+              <caret line="197" column="21" selection-start-line="197" selection-start-column="21" selection-end-line="197" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ability_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/ability_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -49,7 +76,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pokedex/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
+            <state relative-caret-position="-1356">
               <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -58,63 +85,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pokedex/urls.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sample_maker/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="27" />
+            <state relative-caret-position="741">
+              <caret line="39" column="18" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="18" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pokedex/static/style.css">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample_maker/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
+              <caret column="28" selection-start-column="28" selection-end-column="28" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pokemon_index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="121" selection-start-line="9" selection-start-column="121" selection-end-line="9" selection-end-column="121" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pokedex/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="39" column="49" selection-start-line="39" selection-start-column="49" selection-end-line="39" selection-end-column="49" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample_maker/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample_maker/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -128,36 +122,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data</find>
-      <find>types</find>
-      <find>data-type_pk</find>
-      <find>data-type</find>
-      <find>getA</find>
-      <find>i;</find>
-      <find>translator</find>
-      <find>category</find>
-      <find>category =</find>
-      <find>move_de</find>
-      <find>move_changed</find>
-      <find>id = &quot;move</find>
-      <find>id=&quot;move</find>
-      <find>decisive</find>
-      <find>dec</find>
-      <find>select</find>
+      <find>성격</find>
+      <find>stat.korean</find>
+      <find>color: ye</find>
+      <find>종족값</find>
+      <find>개</find>
+      <find>개체값</find>
+      <find>노력치</find>
+      <find>EV_changed</find>
+      <find>.max</find>
+      <find>sum_of_EVs</find>
+      <find>remain</find>
+      <find>padd</find>
+      <find>class = &quot;</find>
       <find>input_changed</find>
-      <find>select_learned</find>
-      <find>4</find>
-      <find>number_of</find>
-      <find>learned_move_{{</find>
-      <find>learned_move</find>
-      <find>is_duplicate</find>
-      <find>move_chan</find>
-      <find>data-pk</find>
+      <find>sum_actual</find>
+      <find>actual_stats</find>
+      <find>sum_actual_stats</find>
+      <find>judge_hidden_power()</find>
+      <find>hidden_power</find>
       <find>console.log</find>
-      <find>lea</find>
-      <find>learned_move_</find>
-      <find>visibility</find>
-      <find>style.</find>
+      <find>EV.vale</find>
+      <find>setAttribute</find>
+      <find>pokemon</find>
+      <find>.type-4</find>
+      <find>type-</find>
+      <find>hidden</find>
+      <find>line-height</find>
+      <find>540</find>
+      <find>hidden_po</find>
+      <find>con</find>
     </findStrings>
     <replaceStrings>
       <replace>div</replace>
@@ -169,6 +163,8 @@
       <replace>korean</replace>
       <replace>calculate_nature_gain</replace>
       <replace>number_of_moves</replace>
+      <replace>550</replace>
+      <replace>sum_of_EVs</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -197,18 +193,21 @@
         <option value="$PROJECT_DIR$/pokedex/admin.py" />
         <option value="$PROJECT_DIR$/sample_maker/templates/sample_maker/select_pokemon.html" />
         <option value="$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_index.html" />
+        <option value="$PROJECT_DIR$/pokedex/models.py" />
+        <option value="$PROJECT_DIR$/pokedex/static/style.css" />
+        <option value="$PROJECT_DIR$/sample_maker/static/style.css" />
         <option value="$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_detail.html" />
         <option value="$PROJECT_DIR$/sample_maker/views.py" />
-        <option value="$PROJECT_DIR$/pokedex/models.py" />
+        <option value="$PROJECT_DIR$/sample_maker/static/sample_maker/style.css" />
         <option value="$PROJECT_DIR$/sample_maker/templates/sample_maker/sample_maker.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="232" />
-    <option name="y" value="67" />
+    <option name="x" value="122" />
+    <option name="y" value="352" />
     <option name="width" value="1780" />
-    <option name="height" value="948" />
+    <option name="height" value="628" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -232,7 +231,33 @@
             <path>
               <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
               <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
               <item name="pokedex" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
+              <item name="pokedex" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
+              <item name="pokedex" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="pokedex" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
+              <item name="pokedex" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="pokedex" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
@@ -251,6 +276,27 @@
               <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
               <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
               <item name="sample_maker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
+              <item name="sample_maker" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
+              <item name="sample_maker" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="sample_maker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alpha_pokemon" type="462c0819:PsiDirectoryNode" />
+              <item name="sample_maker" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="sample_maker" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alpha_pokemon" type="b2602c69:ProjectViewProjectNode" />
@@ -272,8 +318,14 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/gaddo_000/PycharmProjects/alpha_pokemon/sample_maker/templates/sample_maker/sample_maker.html" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../django_tutorial" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gaddo_000\PycharmProjects\alpha_pokemon\sample_maker\static\sample_maker" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -301,10 +353,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="186" y="54" width="1424" height="758" extended-state="0" />
+    <frame x="98" y="282" width="1424" height="502" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13842826" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21989906" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3270869" />
@@ -322,6 +374,25 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19085488" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Python Console" order="8" weight="0.24020442" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3270869" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -438,18 +509,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pokedex/migrations/0015_auto_20180702_0147.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample_maker/apps.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -478,27 +545,6 @@
     <entry file="file://$PROJECT_DIR$/sample_maker/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/move_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/ability_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/ability_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_maker/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -506,13 +552,6 @@
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/move_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -543,23 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample_maker/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample_maker/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pokedex/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -573,23 +595,6 @@
     <entry file="file://$PROJECT_DIR$/sample_maker/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample_maker/templates/sample_maker/select_pokemon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pokedex/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -597,17 +602,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/move_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/pokemon_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+        <state relative-caret-position="533">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/move_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample_maker/templates/sample_maker/select_pokemon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample_maker/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pokedex/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1356">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/ability_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample_maker/static/sample_maker/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2549">
+          <caret line="197" column="21" selection-start-line="197" selection-start-column="21" selection-end-line="197" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-171" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample_maker/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pokedex/static/style.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pokedex/templates/pokedex/ability_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample_maker/templates/sample_maker/sample_maker.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-361">
-          <caret line="139" column="6" lean-forward="true" selection-start-line="139" selection-start-column="6" selection-end-line="139" selection-end-column="6" />
+        <state relative-caret-position="-1121">
+          <caret line="256" column="15" lean-forward="true" selection-start-line="256" selection-start-column="15" selection-end-line="256" selection-end-column="15" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#option#1;n#select#0;n#td#1;n#tr#0;n#table#0;n#div#2;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

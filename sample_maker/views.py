@@ -35,5 +35,6 @@ class SampleMakerView(generic.TemplateView):
             'speed'
         ]
         context['number_of_moves'] = range(4)
+        context['pokemontypes'] = PokemonType.objects.all()
 
         return context
