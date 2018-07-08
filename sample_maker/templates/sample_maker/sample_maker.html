@@ -84,6 +84,20 @@
         <canvas class="chart" id="stats-chart">
 
         </canvas>
+        <table>
+            <tr>
+                <th>물리 내구력</th>
+            </tr>
+            <tr>
+                <td id="physical_durability"></td>
+            </tr>
+            <tr>
+                <th>특수 내구력</th>
+            </tr>
+            <tr>
+                <td id="special_durability"></td>
+            </tr>
+        </table>
     </div>
     <div class="stats">
         <table class="stats-table">
@@ -140,20 +154,6 @@
 
 <div style="display: none">
 
-
-    <div id="actual_stats">
-        <table>
-            <tr>
-                <th>물리 내구력</th>
-                <th>특수 내구력</th>
-            </tr>
-            <tr>
-                <td id="physical_durability"></td>
-                <td id="special_durability"></td>
-            </tr>
-        </table>
-    </div>
-
 <div>
     <h2>기술</h2>
     {% for i in number_of_moves %}
@@ -206,11 +206,9 @@
     const number_of_moves = 4;
     input_changed();
 
-    draw_stats_chart();
-
     function get_base_stats() {
         var base_stats = {}
-        for (i = 0; i < stats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var id = "base_" + stats[i];
             var base_stat = parseInt(document.getElementById(id).innerHTML);
             base_stats[stats[i]] = base_stat;
@@ -221,7 +219,7 @@
 
     function get_EVs() {
         var EVs = {}
-        for (i = 0; i < stats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var id = stats[i] + "_EV";
             var EV = parseInt(document.getElementById(id).value);
             EVs[stats[i]] = EV;
@@ -232,7 +230,7 @@
 
     function get_IVs() {
         var IVs = {}
-        for (i = 0; i < stats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var id = stats[i] + "_IV";
             var IV = parseInt(document.getElementById(id).value);
             IVs[stats[i]] = IV;
@@ -243,7 +241,7 @@
 
     function get_actual_stats() {
         var actual_stats = {}
-        for (i = 0; i < stats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var id = "actual_" + stats[i];
             var actual_stat = parseInt(document.getElementById(id).innerHTML);
             actual_stats[stats[i]] = actual_stat;
@@ -263,14 +261,13 @@
 
     function set_actual_stats(actual_stats) {
         var sum = 0;
-        for (i = 0; i < stats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var actual_stat_id = "actual_" + stats[i];
             sum += actual_stats[stats[i]];
 
             document.getElementById(actual_stat_id).innerHTML = actual_stats[stats[i]];
         }
 
-        console.log(sum);
         document.getElementById("sum_actual_stats").innerHTML = sum;
     }
 
@@ -482,7 +479,7 @@
     }
 
     function is_duplicated_move(index, move_pk) {
-        for (i = 0; i < number_of_moves; i++) {
+        for (var i = 0; i < number_of_moves; i++) {
             if (i != index) {
                 var another_move_select_id = "select_learned_move_" + i;
                 var another_move_select = document.getElementById(another_move_select_id);
@@ -499,20 +496,23 @@
 
     function check_value(id) {
         var x = document.getElementById(id);
-            if (x.value > parseInt(x.max)) {
-                x.value = x.max;
-            }
-            else if (x.value < parseInt(x.min)) {
-                x.value = x.min;
-            }
-            else if (x.value == '') {
-                x.value = x.min;
-            }
+        if (x.value > parseInt(x.max)) {
+            x.value = x.max;
+        }
+        else if (x.value < parseInt(x.min)) {
+            x.value = x.min;
+        }
+        else if (x.value == '') {
+            x.value = x.min;
+        }
+        else {
+            x.value = parseInt(x.value);
+        }
     }
 
     function sum_of_EVs() {
         var sum = 0;
-        for (i = 0; i < stats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var id = stats[i] + "_EV";
             value = document.getElementById(id).value;
             value = parseInt(value)
@@ -525,7 +525,7 @@
         var level = 50;
         var actual_stats = {};
 
-        for (i = 0; i < stats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var actual_stat = (base_stats[stats[i]] * 2 + IVs[stats[i]] + EVs[stats[i]]/4);
             actual_stat *= level / 100;
 
@@ -591,7 +591,7 @@
     function calculate_stab(move_type_pk) {
         var stab = 1;
         var types = document.getElementById("types_tr").cells;
-        for (i = 0; i < types.length; i++) {
+        for (var i = 0; i < types.length; i++) {
             var type_pk = types[i].getAttribute('data-pk');
 
             if (type_pk == move_type_pk) {
@@ -612,7 +612,7 @@
         var durability = calculate_durability(actual_stats);
         set_durability(durability);
 
-        for (i = 0; i < number_of_moves; i ++) {
+        for (var i = 0; i < number_of_moves; i ++) {
             learned_move_changed(i);
         }
 
@@ -671,31 +671,19 @@
         return context;
     }
 
-    function get_base_points() {
-        var l = 150;
-
-        var start_point = {'x': 125, 'y': 40};
-        var hp_point = {'x': start_point['x'] + (l * Math.sqrt(3) / 2), 'y': start_point['y']};
-        var attack_point = {'x': start_point['x'], 'y': start_point['y'] + (l / 2)};
-        var sp_attack_point = {'x': start_point['x'], 'y': attack_point['y'] + l};
-        var speed_point = {'x': hp_point['x'], 'y': sp_attack_point['y'] + (l / 2)};
-        var sp_defense_point = {'x': hp_point['x'] + (l * Math.sqrt(3) / 2), 'y': sp_attack_point['y']};
-        var defense_point = {'x': sp_defense_point['x'], 'y': attack_point['y']};
-
-        var base_points = {
-            'hp': hp_point,
-            'attack': attack_point, 'defense': defense_point,
-            'special_attack': sp_attack_point, 'special_defense': sp_defense_point,
-            'speed': speed_point
+    function calculate_hexagon_base_points(l, center={'x': 250, 'y': 190}) {
+        var stats_value = {}
+        for (var i = 0; i < stats.length; i++){
+            stats_value[stats[i]] = 255
         }
+
+        base_points = calculate_stats_points(stats_value, l=l, center=center);
 
         return base_points;
     }
 
-    function get_stats_text_points(){
-        var text_d = 20;
-
-        var base_points = get_base_points();
+    function calculate_stats_text_points(text_d=20, l=150) {
+        var base_points = calculate_hexagon_base_points(l);
 
         var hp_text_point = {'x': base_points['hp']['x'], 'y': base_points['hp']['y'] - text_d};
         var attack_text_point = {'x': base_points['attack']['x'] - (text_d * Math.sqrt(3) / 2), 'y': base_points['attack']['y'] - text_d / 2};
@@ -710,38 +698,107 @@
             'special_attack': sp_attack_text_point, 'special_defense': sp_defense_text_point,
             'speed': speed_text_point
         }
-
         return stats_text_points;
     }
 
-    function draw_stats_chart() {
+    function calculate_stats_points(stat_values, l=150, center={'x': 250, 'y': 190}, max_value=255) {
+        var stat_values_points = {}
+
+        var distance = {}
+        for (var i = 0; i < stats.length; i++) {
+            distance[stats[i]] = l * (stat_values[stats[i]] / max_value);
+        }
+        var hp_point = {'x': center['x'], 'y': center['y'] - distance['hp']};
+        var attack_point = {
+            'x': center['x'] - (distance['attack'] * Math.sqrt(3) / 2),
+            'y': center['y'] - (distance['attack'] * 1/2)
+        };
+        var defense_point = {
+            'x': center['x'] + (distance['defense'] * Math.sqrt(3) / 2),
+            'y': center['y'] - (distance['defense'] * 1/2)
+        };
+        var sp_attack_point = {
+            'x': center['x'] - (distance['special_attack'] * Math.sqrt(3) / 2),
+            'y': center['y'] + (distance['special_attack'] * 1/2)
+        };
+        var sp_defense_point = {
+            'x': center['x'] + (distance['special_defense'] * Math.sqrt(3) / 2),
+            'y': center['y'] + (distance['special_defense'] * 1/2)
+        };
+        var speed_point = {
+            'x': center['x'], 'y': center['y'] + distance['speed']
+        };
+
+        return {
+            'hp': hp_point,
+            'attack': attack_point,
+            'defense': defense_point,
+            'special_attack': sp_attack_point,
+            'special_defense': sp_defense_point,
+            'speed': speed_point
+        };
+    }
+
+    function draw_stats_chart(width=500, height=380, l=150, graduation_number=10) {
+        var l = 150;
         var canvas = document.getElementById("stats-chart");
         var context = get_chart_context();
 
-        canvas.width = 500;
-        canvas.height = 380;
+        canvas.width = width;
+        canvas.height = height;
+
+        center = {x: width / 2, y: height / 2};
 
         context.clearRect(0, 0, canvas.width, canvas.height);
-        var base_points = get_base_points();
+        var base_points = calculate_hexagon_base_points(l, center);
 
-        draw_base_stats_hexagon(context, base_points);
+        context.lineWidth = 5;
+        context.beginPath();
+        context.arc(center['x'], center['y'], 1, 0, 2 * Math.PI, false);
+        context.fillStyle = "black";
+        context.fill();
 
-        var stats_text_points = get_stats_text_points();
+        draw_hexagon_stats(context, base_points);
+
+        for (var i = 0; i < graduation_number; i ++) {
+            var sub_base_points = calculate_hexagon_base_points(l  * (graduation_number - i) / graduation_number);
+
+            draw_hexagon_stats(context, sub_base_points, 0.3);
+        }
+
+        var text_d = 20;
+
+        var stats_text_points = calculate_stats_text_points(text_d, l);
         draw_stats_text(context, stats_text_points);
+
+        var actual_stats = get_actual_stats();
+        var actual_stats_points = calculate_stats_points(actual_stats, l=l, center=center);
+
+        draw_hexagon_stats(context, actual_stats_points, 1, "fill", "lightblue", 0.5);
     }
 
-    function draw_base_stats_hexagon(context, base_points){
-        context.beginPath();
+    function draw_hexagon_stats(context, base_points, line_width=1, method="stroke", color="black", alpha=1){
+        context.lineWidth = line_width;
 
+        context.beginPath();
         context.moveTo(base_points['hp']['x'], base_points['hp']['y']);
         context.lineTo(base_points['attack']['x'], base_points['attack']['y']);
         context.lineTo(base_points['special_attack']['x'], base_points['special_attack']['y']);
         context.lineTo(base_points['speed']['x'], base_points['speed']['y']);
         context.lineTo(base_points['special_defense']['x'], base_points['special_defense']['y']);
         context.lineTo(base_points['defense']['x'], base_points['defense']['y']);
-        context.lineTo(base_points['hp']['x'], base_points['hp']['y']);
+        context.closePath();
 
-        context.stroke();
+        context.globalAlpha = alpha;
+
+        if (method == "stroke") {
+            context.strokeStyle = color;
+            context.stroke();
+        }
+        else if (method == "fill") {
+            context.fillStyle = color;
+            context.fill();
+        }
     }
 
     function draw_stats_text(context, stats_text_points) {;
@@ -749,6 +806,9 @@
         var increased_stats = stat_translator(affected_stats['increased']);
         var decreased_stats = stat_translator(affected_stats['decreased']);
 
+        context.textBaseline = "middle";
+
+        context.beginPath();
         {% for stat in stats %}
             var formal_stat = stat_translator('{{ stat }}');
             if (formal_stat == 'special_attack' || formal_stat == 'attack') {
@@ -780,6 +840,7 @@
 
             context.fillText('{{ stat.korean }}', stats_text_points[formal_stat]['x'], stats_text_points[formal_stat]['y']);
         {% endfor %}
+        context.closePath();
     }
 </script>
 </html>
