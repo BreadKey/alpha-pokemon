@@ -47,6 +47,7 @@
 .pokemon-detail .types li {
     margin-right: 5px;
     padding-top: 2px;
+    padding-left: 0px;
     display: inline-block;
     color: white;
     width: 48px;
