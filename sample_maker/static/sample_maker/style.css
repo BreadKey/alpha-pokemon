@@ -40,6 +40,7 @@
     margin-top: 6px;
     margin-bottom: 0px;
     padding-top: 4px;
+    padding-left: 0px;
     text-align: center;
     color: white;
 }
@@ -47,7 +48,6 @@
 .pokemon-detail .types li {
     margin-right: 5px;
     padding-top: 2px;
-    padding-left: 0px;
     display: inline-block;
     color: white;
     width: 48px;
