@@ -774,7 +774,7 @@
         var actual_stats = get_actual_stats();
         var actual_stats_points = calculate_stats_points(actual_stats, l=l, center=center);
 
-        draw_hexagon_stats(context, actual_stats_points, 1, "fill", "lightblue", 0.5);
+        draw_hexagon_stats(context, actual_stats_points, 1, "fill", "#55AEE2", 0.5);
     }
 
     function draw_hexagon_stats(context, base_points, line_width=1, method="stroke", color="black", alpha=1){
@@ -824,7 +824,7 @@
             }
 
             if (formal_stat == increased_stat) {
-                context.fillStyle = "#31A2F2";
+                context.fillStyle = "#8b52e2";
                 context.font = "bold 20px Arial";
             }
 
