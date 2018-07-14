@@ -1,0 +1,3 @@
+MIN_EV = 0
+MAX_EV = 252
+MAX_SUM_OF_EVS = 510
