@@ -4,201 +4,208 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'sample_maker/style.css' %}" />
 
-<div class="pokemon-detail detail-type-{{ pokemonspec.types.all.0.pk }}" id="type-{{ pokemonspec.types.all.0.pk }}">
-    <div class="image">
-        <img  class="profile_content" style="width: 300px; height: 300px; background: url({% static 'pokedex/images/profile'  %}/{{ pokemonspec.pk }}.png) -150px -150px /auto;" >
-    </div>
-
-    <div class="index-number">
-        No.{{ pokemonspec.index_number }}
-    </div>
-
-    <a href="{% url 'pokedex:pokemon_detail' pokemonspec.pk %}" title="{{ pokemonspec.name.korean }} 도감 보기">
-        <div class="name">
-            {{ pokemonspec.name.korean }}
+<form>
+    <div class="pokemon-detail detail-type-{{ sample_pokemon.spec.types.all.0.pk }}" id="type-{{ sample_pokemon.spec.types.all.0.pk }}">
+        <div class="image">
+            <img  class="profile_content" style="width: 300px; height: 300px; background: url({% static 'pokedex/images/profile'  %}/{{ sample_pokemon.spec.pk }}.png) -150px -150px /auto;" >
         </div>
-    </a>
 
-    <ul class="types">
-        {% for type in pokemonspec.types.all %}
-            <li class="pokemon-type-{{ type.pk }}" style="white-space: nowrap;">{{ type.name.korean }}</li>
-        {% endfor %}
-    </ul>
+        <div class="index-number">
+            No.{{ sample_pokemon.spec.index_number }}
+        </div>
 
-    <div class="pokemon-option">
-        <table>
-            <tr>
-                <td>
-                    <strong>특성</strong>
-                </td>
-                <td>
-                     <select id="select_ability" onchange="ability_changed()">
-                        {% for ability in pokemonspec.can_have_abilities.all %}
-                            <option
-                                title="{{ ability.description.korean }}">
-                                {{ ability.name.korean }}
-                            </option>
-                        {% endfor %}
-                        {% for hidden_ability in pokemonspec.hidden_ability.all %}
-                            <option
-                                style="background-color: lightgray;"
-                                title="{{ hidden_ability.description.korean }}">
-                                {{ hidden_ability.name.korean }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <strong>성격</strong>
-                </td>
-                <td>
-                    <select id="select_nature" onchange="nature_changed()">
-                        {% for nature in natures %}
-                            <option
-                                data-increased_stat="{{ nature.increased_stat.korean }}"
-                                data-decreased_stat="{{ nature.decreased_stat.korean }}"
-                                title="{{ nature.increased_stat.korean }}▲ {{ nature.decreased_stat.korean }}▼">
-                                {{ nature.name.korean }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <strong>지닌 물건</strong>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+        <a href="{% url 'pokedex:pokemon_detail' sample_pokemon.spec.pk %}" title="{{ sample_pokemon.spec.name.korean }} 도감 보기">
+            <div class="name">
+                {{ sample_pokemon.spec.name.korean }}
+            </div>
+        </a>
 
-<div class="pokemon-stats">
-    <div class="chart-container">
-        <canvas class="chart" id="stats-chart">
+        <ul class="types">
+            {% for type in sample_pokemon.spec.types.all %}
+                <li class="pokemon-type-{{ type.pk }}" style="white-space: nowrap;">{{ type.name.korean }}</li>
+            {% endfor %}
+        </ul>
 
-        </canvas>
-        <table>
-            <tr>
-                <th>물리 내구력</th>
-            </tr>
-            <tr>
-                <td id="physical_durability"></td>
-            </tr>
-            <tr>
-                <th>특수 내구력</th>
-            </tr>
-            <tr>
-                <td id="special_durability"></td>
-            </tr>
-        </table>
-    </div>
-    <div class="stats">
-        <table class="stats-table">
-            <tr>
-                <th>
-                </th>
-                    {% for stat in stats %}
-                        <th>{{ stat.korean }}</th>
-                    {% endfor %}
-                <th>총합</th>
-            </tr>
-            <tr>
-                <td>
-                    <strong>종족값</strong>
-                </td>
-                <td id="base_hp">{{ pokemonspec.base_hp }}</td>
-                <td id="base_attack">{{ pokemonspec.base_attack }}</td>
-                <td id="base_defense">{{ pokemonspec.base_defense }}</td>
-                <td id="base_special_attack">{{ pokemonspec.base_special_attack }}</td>
-                <td id="base_special_defense">{{ pokemonspec.base_special_defense }}</td>
-                <td id="base_speed">{{ pokemonspec.base_speed }}</td>
-                <td id="sum_of_base_stats">{{ pokemonspec.sum_of_base_stats }}</td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>개체값</strong>
-                </td>
-                {% for stat in formal_stats %}
-                    <td><input type="number" value="31" min="0" max="31" id="{{ stat }}_IV" oninput="IV_changed('{{ stat }}')"></td>
-                {% endfor %}
-                <td><span id="hidden_power" class="pokemon-type-16">악</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>노력치</strong>
-                </td>
-                {% for stat in formal_stats %}
-                    <td><input type="number" value="0" min="0" max="252" id="{{ stat }}_EV" oninput="EV_changed('{{ stat }}')"></td>
-                {% endfor %}
-                <td><input type="number" value="0" min="0" max="510" readonly id="sum_EV"></td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>실능치</strong>
-                </td>
-                {% for stat in formal_stats %}
-                    <td id="actual_{{ stat }}"></td>
-                {% endfor %}
-                <td id="sum_actual_stats"></td>
-            </tr>
-        </table>
-    </div>
-</div>
-
-<div style="display: none">
-
-<div>
-    <h2>기술</h2>
-    {% for i in number_of_moves %}
-        <div>
-            <select id="select_learned_move_{{ i }}" onchange="learned_move_changed({{ i }})">
-                <option selected>--</option>
-                {% for move in pokemonspec.can_learn_moves_order_by_ascending_id %}
-                    <option
-                        data-pk="{{ move.pk }}"
-                        data-damage="{{ move.damage_to_str }}"
-                        data-accuracy="{{ move.accuracy_to_str }}"
-                        data-description="{{ move.description.korean }}"
-                        data-category="{{ move.category.name.korean }}"
-                        data-type_pk="{{ move.type.pk }}">
-                        {{ move.name.korean }}
-                    </option>
-                {% endfor %}
-            </select>
-            <table id="learned_move_{{ i }}_table">
+        <div class="pokemon-option">
+            <table>
                 <tr>
-                    <th>위력</th>
-                    <th>명중률</th>
-                    <th>분류</th>
+                    <td>
+                        <strong>특성</strong>
+                    </td>
+                    <td>
+                         <select id="select_ability" onchange="ability_changed()">
+                            {% for ability in sample_pokemon.spec.can_have_abilities.all %}
+                                <option
+                                    title="{{ ability.description.korean }}">
+                                    {{ ability.name.korean }}
+                                </option>
+                            {% endfor %}
+                            {% for hidden_ability in sample_pokemon.spec.hidden_ability.all %}
+                                <option
+                                    style="background-color: lightgray;"
+                                    title="{{ hidden_ability.description.korean }}">
+                                    {{ hidden_ability.name.korean }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                                    </td>
                 </tr>
+            </table>
+            <table>
                 <tr>
-                    <td id="move_{{ i }}_damage"></td>
-                    <td id="move_{{ i }}_accuracy"></td>
-                    <td id="move_{{ i }}_category"></td>
+                    <td>
+                        <strong>성격</strong>
+                    </td>
+                    <td>
+                        <select id="select_nature" onchange="nature_changed()">
+                            {% for nature in natures %}
+                                <option
+                                    data-increased_stat="{{ nature.increased_stat.korean }}"
+                                    data-decreased_stat="{{ nature.decreased_stat.korean }}"
+                                    title="{{ nature.increased_stat.korean }}▲ {{ nature.decreased_stat.korean }}▼">
+                                    {{ nature.name.korean }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </td>
                 </tr>
+            </table>
+            <table>
                 <tr>
-                    <th>설명</th>
-                </tr>
-                <tr>
-                    <td id="move_{{ i }}_description"></td>
-                </tr>
-                <tr>
-                    <th>결정력</th>
-                </tr>
-                <tr>
-                    <td id="move_{{ i }}_decisive_power"></td>
+                    <td>
+                        <strong>지닌 물건</strong>
+                    </td>
                 </tr>
             </table>
         </div>
-    {% endfor %}
-</div>
+    </div>
+
+    <div class="pokemon-stats">
+        <div class="chart-container">
+            <canvas class="chart" id="stats-chart">
+
+            </canvas>
+            <table>
+                <tr>
+                    <th>물리 내구력</th>
+                </tr>
+                <tr>
+                    <td id="physical_durability"></td>
+                </tr>
+                <tr>
+                    <th>특수 내구력</th>
+                </tr>
+                <tr>
+                    <td id="special_durability"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="stats">
+            <table class="stats-table">
+                <tr>
+                    <th>
+                    </th>
+                        {% for stat in stats %}
+                            <th>{{ stat.korean }}</th>
+                        {% endfor %}
+                    <th>총합</th>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>종족값</strong>
+                    </td>
+                    {% for stat, value in sample_pokemon.base_stats.items %}
+                        <td id="base_{{ stat }}">{{ value }}
+                    {% endfor %}
+                <tr>
+                    <td>
+                        <strong>개체값</strong>
+                    </td>
+                    {% autoescape off %}
+                        <td>{{ form.hp_IV }}</td>
+                        <td>{{ form.attack_IV }}</td>
+                        <td>{{ form.defense_IV }}</td>
+                        <td>{{ form.special_attack_IV }}</td>
+                        <td>{{ form.special_defense_IV }}</td>
+                        <td>{{ form.speed_IV }}</td>
+                    {% endautoescape %}
+                    <td><span id="hidden_power" class="pokemon-type-{{ sample_pokemon.hidden_power_type.pk }}">{{ sample_pokemon.hidden_power_type.name.korean }}</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>노력치</strong>
+                    </td>
+                    {% autoescape off %}
+                        <td>{{ form.hp_EV }}</td>
+                        <td>{{ form.attack_EV }}</td>
+                        <td>{{ form.defense_EV }}</td>
+                        <td>{{ form.special_attack_EV }}</td>
+                        <td>{{ form.special_defense_EV }}</td>
+                        <td>{{ form.speed_EV }}</td>
+                    {% endautoescape %}
+                    <td><input type="number" value="0" min="0" max="510" readonly id="sum_EV"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>실능치</strong>
+                    </td>
+                    {% for stat in formal_stats %}
+                        <td id="actual_{{ stat }}"></td>
+                    {% endfor %}
+                    <td id="sum_actual_stats"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+<div style="display: none">
+
+    <div>
+        <h2>기술</h2>
+        {% for i in number_of_moves %}
+            <div>
+                <select id="select_learned_move_{{ i }}" onchange="learned_move_changed({{ i }})">
+                    <option selected>--</option>
+                    {% for move in sample_pokemon.spec.can_learn_moves_order_by_ascending_id %}
+                        <option
+                            data-pk="{{ move.pk }}"
+                            data-damage="{{ move.damage_to_str }}"
+                            data-accuracy="{{ move.accuracy_to_str }}"
+                            data-description="{{ move.description.korean }}"
+                            data-category="{{ move.category.name.korean }}"
+                            data-type_pk="{{ move.type.pk }}">
+                            {{ move.name.korean }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <table id="learned_move_{{ i }}_table">
+                    <tr>
+                        <th>위력</th>
+                        <th>명중률</th>
+                        <th>분류</th>
+                    </tr>
+                    <tr>
+                        <td id="move_{{ i }}_damage"></td>
+                        <td id="move_{{ i }}_accuracy"></td>
+                        <td id="move_{{ i }}_category"></td>
+                    </tr>
+                    <tr>
+                        <th>설명</th>
+                    </tr>
+                    <tr>
+                        <td id="move_{{ i }}_description"></td>
+                    </tr>
+                    <tr>
+                        <th>결정력</th>
+                    </tr>
+                    <tr>
+                        <td id="move_{{ i }}_decisive_power"></td>
+                    </tr>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 
 <script>
@@ -286,8 +293,7 @@
         input_changed();
     }
 
-    function IV_changed(stat) {
-        var id = stat + "_IV";
+    function IV_changed(id) {
         check_value(id);
 
         judge_hidden_power()
@@ -384,8 +390,7 @@
         {% endfor %}
     }
 
-    function EV_changed(stat) {
-        var id = stat + "_EV";
+    function EV_changed(id) {
         check_value(id);
 
         var total_EVs = sum_of_EVs();
