@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'sample_maker/style.css' %}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <div class="pokemon-stats">
+            <div class="stats">
+                <table class="stats-table">
+                    <tr>
+                        <th></th>
+                        {% for stat in stats %}
+                            <th>{{ stat.korean }}</th>
+                        {% endfor %}
+                        <th>총합</th>
+                    </tr>
+                    <tr>
+                        <td><strong>종족값</strong></td>
+                        {% for stat, value in sample_pokemon.base_stats.items %}
+                            <td id="base_{{ stat }}">{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td><stong>노력치</stong></td>
+                        <td>{{ form.hp_EV }}</td>
+                        <td>{{ form.attack_EV }}</td>
+                        <td>{{ form.defense_EV }}</td>
+                        <td>{{ form.special_attack_EV }}</td>
+                        <td>{{ form.special_defense_EV }}</td>
+                        <td>{{ form.speed_EV }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
