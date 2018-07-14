@@ -6,7 +6,7 @@
 
 ## Sample Maker
 포켓몬 샘플 제작기
-<image src="https://github.com/LLLYYYKKK/Alpha_pokemon/blob/master/sample_maker.png?raw=true">
+<image src="https://github.com/LLLYYYKKK/Alpha_pokemon/blob/develop/sample_maker.png?raw=true">
 
 ## Battle Simulator
 
