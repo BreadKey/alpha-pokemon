@@ -21,7 +21,7 @@ class PokemonType(models.Model):
     name = models.OneToOneField(Name, on_delete=models.CASCADE)
     super_effective_types = models.ManyToManyField("self", blank=True, related_name='+', symmetrical=False)
     not_very_effective_types = models.ManyToManyField("self", blank=True, related_name='+', symmetrical=False)
-    ineffective_typs = models.ManyToManyField("self", blank=True, related_name='+', symmetrical=False)
+    ineffective_types = models.ManyToManyField("self", blank=True, related_name='+', symmetrical=False)
 
     def __str__(self):
         return self.name.korean
