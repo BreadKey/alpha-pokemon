@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from pokedex.models import *
 from django.views import generic
+from .models import SamplePokemon
 
 # Create your views here.
 
@@ -14,8 +15,13 @@ class SelectPokemonView(generic.ListView):
 class SampleMakerView(generic.TemplateView):
     template_name = 'sample_maker/sample_maker.html'
 
+    def get(self, request, *args, **kwargs):
+        self.sample_pokemon = SamplePokemon(spec=PokemonSpec.objects.get(pk=kwargs['pk']))
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(SampleMakerView, self).get_context_data(**kwargs)
+        context['sample_pokemon'] = self.sample_pokemon
         context['pokemonspec'] = PokemonSpec.objects.get(pk=kwargs['pk'])
         context['natures'] = PokemonNature.objects.order_by('id')
         context['stats'] = [
